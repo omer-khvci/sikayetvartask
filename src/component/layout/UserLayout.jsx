@@ -1,6 +1,5 @@
 import { Avatar, Box, Typography } from "@mui/material"
 import styled from "@emotion/styled"
-import avatarIcon from "../img/avatar.png"
 const LogoHeader = styled(Box)(({ theme }) => ({
     paddingTop: "44px",
     textAlign: 'center',
@@ -39,7 +38,7 @@ const UserLayout = ({ children }) => {
                 }} component={'h3'} variant="body2"  >MANAGE COURSES</Typography>
             </LogoHeader>
             <Avatar
-                src="../img/avatar.png"
+                src="/img/avatar.png"
                 sx={{
                     width: "219px",
                     height: "150px",
