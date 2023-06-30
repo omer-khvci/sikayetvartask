@@ -19,7 +19,7 @@ class CustomDocument extends Document {
 
                 <link rel='shortcut icon' href='/images/favicon.png' />
             </Head>
-            <body>
+            <body style={{margin :"0"}}>
                 <Main />
                 <NextScript />
             </body>
