@@ -3,13 +3,17 @@ import Head from "next/head"
 import { Box, ThemeProvider } from '@mui/material'
 import { AuthProvider } from "@/context/AuthContext"
 import { unstable_createMuiStrictModeTheme } from '@mui/material/styles';
+import UserLayout from "@/component/layout/UserLayout";
+import BlankLayout from "@/component/layout/BlankLayout";
 
 const theme = unstable_createMuiStrictModeTheme();
 
 const App = (props) => {
     const { Component, pageProps } = props
 
-    console.log(props)
+    const getLayout = Component.Layout ?? (page => <UserLayout >{page}</UserLayout>)
+
+
 
     return (
         <>
@@ -20,7 +24,7 @@ const App = (props) => {
             <Box>
                 <AuthProvider>
                     <ThemeProvider theme={theme}>
-                        <Component />
+                        {getLayout(<Component {...pageProps} />)}
                     </ThemeProvider>
                 </AuthProvider>
             </Box>
