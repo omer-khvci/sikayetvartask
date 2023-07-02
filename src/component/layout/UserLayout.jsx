@@ -39,7 +39,8 @@ const UserLayout = ({ children }) => {
         },
         {
             name: 'Students',
-            icon: 'graduation-cap-1.svg'
+            icon: 'graduation-cap-1.svg',
+            path: '/students'
         },
         {
             name: 'Payment',
@@ -172,14 +173,17 @@ const UserLayout = ({ children }) => {
                             justifyContent: "start",
                         }}>
 
-                            {/* <SignOutIcon /> */}
                             <img src="/img/sign-out-alt-1.svg" alt="" />
                         </ListItemIcon>
                     </ListItemButton>
                 </List>
             </Box>
         </Box>
-        <Box sx={{ width: 'calc(100% - 270px)' }}>
+        <Box sx={{
+            width: 'calc(100% - 270px)',
+            background: pathname === '/students' ? '#F8F8F8' : '#FDFDFD'
+
+        }}>
             <Box sx={{
                 height: "60px",
                 display: "flex",
@@ -190,7 +194,7 @@ const UserLayout = ({ children }) => {
                     marginLeft: "30px",
                     marginTop: "5px"
                 }}>
-                     <img src="/img/caret-circle-down-1.svg" alt="" /></IconButton>
+                    <img src="/img/caret-circle-down-1.svg" alt="" /></IconButton>
                 <IconButton sx={{
                     marginRight: "30px",
                     marginTop: "5px"
@@ -200,6 +204,7 @@ const UserLayout = ({ children }) => {
             </Box>
             <Box sx={{
                 marginTop: "30px",
+
             }}>{children}</Box>
 
         </Box>

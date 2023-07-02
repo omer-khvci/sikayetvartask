@@ -18,10 +18,6 @@ const Home = () => {
                     padding: "10px"
                 }}>
 
-                    {/* <CapIcon sx={{
-                            height: "38px",
-                            width: "48px"
-                        }} /> */}
                     <img src="/img/graduation-cap.svg" alt="" />
 
                 </CardContent>
@@ -68,10 +64,6 @@ const Home = () => {
                 <CardContent sx={{
                     padding: "10px"
                 }}>
-                    {/* <BookmarkLgIcon sx={{
-                            height: "28px",
-                            width: "35px"
-                        }} /> */}
                     <img src="/img/bookmarkLg.svg" alt="" />
 
                 </CardContent>
