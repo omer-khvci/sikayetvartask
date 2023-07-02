@@ -1,4 +1,4 @@
-import { Avatar, Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography, createSvgIcon } from "@mui/material"
+import { Avatar, Box, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography, createSvgIcon } from "@mui/material"
 import styled from "@emotion/styled"
 import FileChartIcon from "@/icon/FileChartIcon";
 import SlidersIcon from "@/icon/SlidersIcon";
@@ -7,6 +7,8 @@ import GraduationCapIcon from "@/icon/GraduationCapIcon";
 import HomeLgIcon from "@/icon/HomeLgIcon";
 import PaymentIcon from "@/icon/PaymentIcon";
 import SignOutIcon from "@/icon/SignOutIcon";
+import BackIcon from "@/icon/BackIcon";
+import BellIcon from "@/icon/BellIcon";
 const LogoHeader = styled(Box)(({ theme }) => ({
     paddingTop: "44px",
     textAlign: 'center',
@@ -240,7 +242,30 @@ const UserLayout = ({ children }) => {
             </Box>
         </Box>
         <Box sx={{ width: 'calc(100% - 270px)' }}>
-            {children}
+            <Box sx={{height:"60px",
+            display:"flex",
+            justifyContent:"space-between"
+        
+        }}>
+                <IconButton sx={{
+                    marginLeft:"30px",
+                    marginTop:"5px"
+                }}><BackIcon sx={{
+                    paddingLeft:"5px",
+                    paddingTop:"5px"
+                }}/></IconButton>
+                <IconButton sx={{
+                    marginRight:"30px",
+                    marginTop:"5px"
+                }}><BellIcon sx={{
+                    paddingLeft:"5px",
+                    paddingTop:"5px"
+                }}/></IconButton>
+            </Box>
+            <Box sx={{
+                marginTop:"30px",
+            }}>{children}</Box>
+            
         </Box>
     </Box>
 }
