@@ -187,7 +187,8 @@ const UserLayout = ({ children }) => {
             <Box sx={{
                 height: "60px",
                 display: "flex",
-                justifyContent: "space-between"
+                justifyContent: "space-between",
+                background:"#FDFDFD"
 
             }}>
                 <IconButton sx={{
