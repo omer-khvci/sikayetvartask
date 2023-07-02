@@ -1,14 +1,6 @@
-import { Avatar, Box, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography, createSvgIcon } from "@mui/material"
-import styled from "@emotion/styled"
-import FileChartIcon from "@/icon/FileChartIcon";
-import SlidersIcon from "@/icon/SlidersIcon";
-import BookmarkIcon from "@/icon/BookmarkIcon";
-import GraduationCapIcon from "@/icon/GraduationCapIcon";
-import HomeLgIcon from "@/icon/HomeLgIcon";
-import PaymentIcon from "@/icon/PaymentIcon";
-import SignOutIcon from "@/icon/SignOutIcon";
-import BackIcon from "@/icon/BackIcon";
-import BellIcon from "@/icon/BellIcon";
+import styled from "@emotion/styled";
+import { Avatar, Box, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
+import { useRouter } from "next/router";
 const LogoHeader = styled(Box)(({ theme }) => ({
     paddingTop: "44px",
     textAlign: 'center',
@@ -27,9 +19,44 @@ const LogoLine = styled(Box)(({ theme }) => ({
 
 
 const UserLayout = ({ children }) => {
+    const router = useRouter()
+    const { pathname } = router
 
 
-    return <Box display={'flex'}>
+
+
+
+    const list = [
+
+        {
+            name: 'Home',
+            icon: 'home-lg-alt-1.svg',
+            path: '/home'
+        },
+        {
+            name: 'Course',
+            icon: 'bookmark-1.svg'
+        },
+        {
+            name: 'Students',
+            icon: 'graduation-cap-1.svg'
+        },
+        {
+            name: 'Payment',
+            icon: 'usd-square-1.svg'
+        },
+        {
+            name: 'Report',
+            icon: 'file-chart-line-1.svg'
+        },
+        {
+            name: 'Settings',
+            icon: 'sliders-v-square-1.svg'
+        }
+    ]
+
+
+    return (<Box display={'flex'}>
         <Box sx={{ width: '270px', background: '#F2EAE1;', height: '100vh' }}>
             <LogoHeader >
                 <LogoLine />
@@ -93,126 +120,34 @@ const UserLayout = ({ children }) => {
                 marginTop: "50px"
             }}>
                 <List>
-                    <ListItemButton sx={{
-                        textAlign: "center"
-                    }}>
-                        <ListItemIcon sx={{
-                            textAlign: "center",
-                            justifyContent:"end",
-                            marginLeft: "25px",
-                            marginTop:"5px"
-                        }}><HomeLgIcon /> </ListItemIcon>
-                        <ListItemText primary="Home" sx={{
-                            color: "#000",
-                            fontSize: "14px",
-                            fontFamily: "Montserrat",
-                            fontStyle: "normal",
-                            fontWeight: "500",
-                            lineHeight: "normal"
-                        }} />
-                    </ListItemButton>
-                </List>
-                <List>
-                    <ListItemButton sx={{
-                        textAlign: "center"
-                    }}>
-                        <ListItemIcon sx={{
-                            textAlign: "center",
-                            justifyContent:"end",
-                            marginLeft: "25px",
-                            marginTop:"5px"
-                        }}><BookmarkIcon /> </ListItemIcon>
+                    {
+                        list.map((item, index) => (
+                            <ListItemButton key={index} sx={{
+                                textAlign: "center",
+                                background: pathname === item.path ? '#FEAF00' : ''
+                            }}>
+                                <ListItemIcon sx={{
+                                    textAlign: "center",
+                                    justifyContent: "end",
+                                    marginLeft: "25px",
+                                }}>
+                                    <img src={`img/${item.icon}`} alt={item.name} />
 
-                        <ListItemText primary="Course" sx={{
-                            color: "#000",
-                            fontSize: "14px",
-                            fontFamily: "Montserrat",
-                            fontStyle: "normal",
-                            fontWeight: "500",
-                            lineHeight: "normal"
-                        }} />
-                    </ListItemButton>
+                                </ListItemIcon>
+                                <ListItemText primary={item.name} sx={{
+                                    color: "#000",
+                                    fontSize: "14px",
+                                    fontFamily: "Montserrat",
+                                    fontStyle: "normal",
+                                    fontWeight: "500",
+                                    lineHeight: "normal"
+                                }} />
+                            </ListItemButton>
+                        ))
+                    }
+
                 </List>
-                <List>
-                    <ListItemButton sx={{
-                        textAlign: "center"
-                    }}>
-                        <ListItemIcon sx={{
-                            textAlign: "center",
-                            justifyContent:"end",
-                            marginLeft: "25px",
-                            marginTop:"5px"
-                        }}><GraduationCapIcon /> </ListItemIcon>
-                        <ListItemText primary="Students" sx={{
-                            color: "#000",
-                            fontSize: "14px",
-                            fontFamily: "Montserrat",
-                            fontStyle: "normal",
-                            fontWeight: "500",
-                            lineHeight: "normal"
-                        }} />
-                    </ListItemButton>
-                </List>
-                <List>
-                    <ListItemButton sx={{
-                        textAlign: "center"
-                    }}>
-                        <ListItemIcon sx={{
-                            textAlign: "center",
-                            justifyContent:"end",
-                            marginLeft: "25px",
-                            marginTop:"5px"
-                        }}><PaymentIcon /> </ListItemIcon>
-                        <ListItemText primary="Payment" sx={{
-                            color: "#000",
-                            fontSize: "14px",
-                            fontFamily: "Montserrat",
-                            fontStyle: "normal",
-                            fontWeight: "500",
-                            lineHeight: "normal"
-                        }} />
-                    </ListItemButton>
-                </List>
-                <List>
-                    <ListItemButton sx={{
-                        textAlign: "center"
-                    }}>
-                        <ListItemIcon sx={{
-                           textAlign: "center",
-                           justifyContent:"end",
-                           marginLeft: "25px",
-                           marginTop:"5px"
-                        }}> <FileChartIcon /> </ListItemIcon>
-                        <ListItemText primary="Report" sx={{
-                            color: "#000",
-                            fontSize: "14px",
-                            fontFamily: "Montserrat",
-                            fontStyle: "normal",
-                            fontWeight: "500",
-                            lineHeight: "normal"
-                        }} />
-                    </ListItemButton>
-                </List>
-                <List>
-                    <ListItemButton sx={{
-                        textAlign: "center"
-                    }}>
-                        <ListItemIcon sx={{
-                            textAlign: "center",
-                            justifyContent:"end",
-                            marginLeft: "25px",
-                            marginTop:"5px"
-                        }}><SlidersIcon /> </ListItemIcon>
-                        <ListItemText primary="Settings" sx={{
-                            color: "#000",
-                            fontSize: "14px",
-                            fontFamily: "Montserrat",
-                            fontStyle: "normal",
-                            fontWeight: "500",
-                            lineHeight: "normal"
-                        }} />
-                    </ListItemButton>
-                </List>
+
             </Box>
 
             <Box sx={{
@@ -223,7 +158,7 @@ const UserLayout = ({ children }) => {
                     <ListItemButton sx={{
                         textAlign: "center"
                     }}>
-                        
+
                         <ListItemText primary="Logout" sx={{
                             color: "#000",
                             fontSize: "14px",
@@ -234,40 +169,41 @@ const UserLayout = ({ children }) => {
                         }} />
                         <ListItemIcon sx={{
                             textAlign: "center",
-                            justifyContent:"start",
-                            marginTop:"5px"
-                        }}><SignOutIcon /> </ListItemIcon>
+                            justifyContent: "start",
+                        }}>
+
+                            {/* <SignOutIcon /> */}
+                            <img src="/img/sign-out-alt-1.svg" alt="" />
+                        </ListItemIcon>
                     </ListItemButton>
                 </List>
             </Box>
         </Box>
         <Box sx={{ width: 'calc(100% - 270px)' }}>
-            <Box sx={{height:"60px",
-            display:"flex",
-            justifyContent:"space-between"
-        
-        }}>
+            <Box sx={{
+                height: "60px",
+                display: "flex",
+                justifyContent: "space-between"
+
+            }}>
                 <IconButton sx={{
-                    marginLeft:"30px",
-                    marginTop:"5px"
-                }}><BackIcon sx={{
-                    paddingLeft:"5px",
-                    paddingTop:"5px"
-                }}/></IconButton>
+                    marginLeft: "30px",
+                    marginTop: "5px"
+                }}>
+                     <img src="/img/caret-circle-down-1.svg" alt="" /></IconButton>
                 <IconButton sx={{
-                    marginRight:"30px",
-                    marginTop:"5px"
-                }}><BellIcon sx={{
-                    paddingLeft:"5px",
-                    paddingTop:"5px"
-                }}/></IconButton>
+                    marginRight: "30px",
+                    marginTop: "5px"
+                }}>
+                    <img src="/img/bell-1.svg" alt="" />
+                </IconButton>
             </Box>
             <Box sx={{
-                marginTop:"30px",
+                marginTop: "30px",
             }}>{children}</Box>
-            
+
         </Box>
-    </Box>
+    </Box>)
 }
 
 export default UserLayout
