@@ -135,6 +135,7 @@ const UserLayout = ({ children }) => {
                                     <img src={`img/${item.icon}`} alt={item.name} />
 
                                 </ListItemIcon>
+                                {/* Yazı Fontu ayarlanacak TODO*/}
                                 <ListItemText primary={item.name} sx={{
                                     color: "#000",
                                     fontSize: "14px",

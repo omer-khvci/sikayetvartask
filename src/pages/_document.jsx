@@ -3,7 +3,6 @@ import Document, { Html, Head, Main, NextScript } from 'next/document'
 import { Children } from 'react'
 
 class CustomDocument extends Document {
-    debugger
 
     render() {
 
