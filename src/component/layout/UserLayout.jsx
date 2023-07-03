@@ -123,7 +123,7 @@ const UserLayout = ({ children }) => {
                 <List>
                     {
                         list.map((item, index) => (
-                            <ListItemButton key={index} sx={{
+                            <ListItemButton href={item.path} key={index} sx={{
                                 textAlign: "center",
                                 background: pathname === item.path ? '#FEAF00' : ''
                             }}>
@@ -189,7 +189,7 @@ const UserLayout = ({ children }) => {
                 height: "60px",
                 display: "flex",
                 justifyContent: "space-between",
-                background:"#FDFDFD"
+                background: "#FDFDFD"
 
             }}>
                 <IconButton sx={{

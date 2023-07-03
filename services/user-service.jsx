@@ -1,14 +1,27 @@
-const ApiUrl =  process.env.NEXT_PUBLIC_API_URL;
+const ApiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-const UserService ={
+const UserService = {
 
-    GetAll: async () => {
-        let url = ApiUrl+`users`
+    GetAll: async (limit = 10, skip = 0) => {
 
-        return  fetch(url)
-        .then(res => res.json())
-        .then(console.log)
+        let url = `${ApiUrl}/users/?limit=${limit}&skip=${skip}&select=firstName,lastName,phone,email,company,domain`
 
+        const response = await fetch(url)
+
+        return await response.json()
+
+    },
+    SearchUser: async (search) => {
+        const url = `${ApiUrl}/users/search?q=${search}`
+        const response = await fetch(url)
+
+        return await response.json()
+    },
+    GetUserInfo: async (id) => {
+        const url = `${ApiUrl}/users/${id}`
+        const response = await fetch(url)
+
+        return await response.json()
     },
 
 }
