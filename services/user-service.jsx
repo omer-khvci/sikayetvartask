@@ -23,6 +23,16 @@ const UserService = {
 
         return await response.json()
     },
+    AddUser: async (request) => {
+        const url = `${ApiUrl}/users/add`
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(request)
+        })
+
+        return await response.json()
+    },
 
 }
 export default UserService;

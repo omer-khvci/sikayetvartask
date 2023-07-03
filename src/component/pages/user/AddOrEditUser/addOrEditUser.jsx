@@ -6,7 +6,11 @@ const AddOrEditUser = ({ editUserId, close }) => {
     const [isUseEffectCall, setIsUseEffectCall] = useState(false)
     const [user, setUser] = useState({
         firstName: '',
-        lastName: ''
+        lastName: '',
+        email:'',
+        phone:'',
+        website:'',
+        companyName:''
     })
 
 
