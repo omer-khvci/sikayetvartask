@@ -10,7 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useEffect, useState } from "react";
 import UserService from "../../../services/user-service";
-import AddUserDialog from "@/component/pages/user/AddUser/addUserDialog";
+import AddOrEditUserDialog from "@/component/pages/user/AddOrEditUser/addOrEditUserDialog";
 const CustomTableCell = styled(TableCell)(({ theme }) => ({
     color: "#000",
     fontSize: "14px",
@@ -76,7 +76,7 @@ const Students = () => {
     }
     return (
         <>
-            <AddUserDialog open={openAddUser || editUserId > 0} editUserId={editUserId} close={() => {
+            <AddOrEditUserDialog open={openAddUser || editUserId > 0} editUserId={editUserId} close={() => {
 
                 setOpenUser(false)
                 setEditUserId(0)

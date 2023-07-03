@@ -7,10 +7,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useState } from 'react';
-import AddUser from './addUser';
+import AddOrEditUser from './addOrEditUser';
 
-const AddUserDialog = ({ open, close, editUserId }) => {
-
+const AddOrEditUserDialog = ({ open, close, editUserId }) => {
 
 
 
@@ -21,17 +20,19 @@ const AddUserDialog = ({ open, close, editUserId }) => {
     return (
 
 
-        <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>Subscribe</DialogTitle>
+        <Dialog maxWidth="md" fullWidth open={open} onClose={handleClose}>
+            <DialogTitle>{
+                    editUserId ? 'Updated User' : 'Add New User'
+                }</DialogTitle>
             <DialogContent>
-                <AddUser editUserId={editUserId} />
+                <AddOrEditUser editUserId={editUserId} />
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleClose}>Cancel</Button>
-                <Button onClick={handleClose}>Subscribe</Button>
+                <Button onClick={handleClose}>Save</Button>
             </DialogActions>
         </Dialog>
 
     );
 }
-export default AddUserDialog;
+export default AddOrEditUserDialog;
