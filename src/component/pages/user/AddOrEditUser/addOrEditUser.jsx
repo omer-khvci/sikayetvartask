@@ -50,7 +50,7 @@ const AddOrEditUser = ({ editUserId, close, open }) => {
 
         const response = await UserService.AddUser(request)
 
-
+        toast.success("New user added");
         close();
 
     }
@@ -67,7 +67,7 @@ const AddOrEditUser = ({ editUserId, close, open }) => {
             companyName: companyName
         }
         const response = await UserService.UpdateUser(request)
-        toast.success('test')
+        toast.success(`The user's information has been updated.`)
         close()
     }
 

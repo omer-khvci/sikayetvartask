@@ -11,6 +11,7 @@ import Paper from '@mui/material/Paper';
 import { useEffect, useState } from "react";
 import UserService from "../../../services/user-service";
 import AddOrEditUserDialog from "@/component/pages/user/AddOrEditUser/addOrEditUserDialog";
+import { toast } from "react-toastify";
 const CustomTableCell = styled(TableCell)(({ theme }) => ({
     color: "#000",
     fontSize: "14px",
@@ -73,6 +74,7 @@ const Students = () => {
 
     const deleteUser = async () => {
         const response = await UserService.DeleteUser(editUserId + 1);
+        toast.success("User Deleted!")
     }
 
     const [openAddUser, setOpenUser] = useState(false)
