@@ -1,6 +1,7 @@
+import { Box, Button, InputLabel, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import UserService from "../../../../../services/user-service";
-import { Alert, Box, Button, InputLabel, Snackbar, Stack, TextField } from "@mui/material";
 
 const AddOrEditUser = ({ editUserId, close, open }) => {
     const [isUseEffectCall, setIsUseEffectCall] = useState(false)
@@ -12,7 +13,7 @@ const AddOrEditUser = ({ editUserId, close, open }) => {
         website: '',
         companyName: ''
     })
-    
+
 
     useEffect(() => {
         if (isUseEffectCall) return
@@ -66,10 +67,9 @@ const AddOrEditUser = ({ editUserId, close, open }) => {
             companyName: companyName
         }
         const response = await UserService.UpdateUser(request)
-        close();
+        toast.success('test')
+        close()
     }
-
-
 
     return (
         <>
@@ -102,7 +102,7 @@ const AddOrEditUser = ({ editUserId, close, open }) => {
                 <Button onClick={close}>Cancel</Button>
                 <Button onClick={editUserId ? updateUser : addUser}>Save</Button>
             </Box>
-            
+
         </>
     )
 }

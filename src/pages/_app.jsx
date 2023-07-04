@@ -1,10 +1,11 @@
 
-import Head from "next/head"
-import { Box, ThemeProvider } from '@mui/material'
-import { AuthProvider } from "@/context/AuthContext"
-import { unstable_createMuiStrictModeTheme } from '@mui/material/styles';
 import UserLayout from "@/component/layout/UserLayout";
-import BlankLayout from "@/component/layout/BlankLayout";
+import { AuthProvider } from "@/context/AuthContext";
+import { Box, ThemeProvider } from '@mui/material';
+import { unstable_createMuiStrictModeTheme } from '@mui/material/styles';
+import Head from "next/head";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const theme = unstable_createMuiStrictModeTheme();
 
@@ -13,6 +14,7 @@ const App = (props) => {
 
     const getLayout = Component.Layout ?? (page => <UserLayout >{page}</UserLayout>)
 
+   
 
 
     return (
@@ -25,7 +27,10 @@ const App = (props) => {
             <Box>
                 <AuthProvider>
                     <ThemeProvider theme={theme}>
+
+                      
                         {getLayout(<Component {...pageProps} />)}
+                        <ToastContainer />
                     </ThemeProvider>
                 </AuthProvider>
             </Box>
