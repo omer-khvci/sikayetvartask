@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Box, Button, FormControl, Grid, IconButton, InputAdornment, InputLabel, OutlinedInput, TablePagination, Typography } from "@mui/material";
+import { Alert, Avatar, Backdrop, Box, Button, CircularProgress, FormControl, Grid, IconButton, InputAdornment, InputLabel, OutlinedInput, Snackbar, Stack, TablePagination, Typography } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -23,19 +23,18 @@ const Students = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const [itemPerpage, setItemPerPage] = useState(10);
     const [search, setSearch] = useState('')
-
     const [data, setData] = useState([])
     const [isUseEffectCall, setIsUseEffectCall] = useState(false)
-
+    const [backDrop, setBackDrop] = useState(false);
     const handleChangePage = (event, newPage) => {
-
+        setBackDrop(true);
         setCurrentPage(newPage);
         getUserList(itemPerpage, newPage);
     };
 
     const handleChangeRowsPerPage = (event) => {
         const tmpItemPerPage = parseInt(event.target.value)
-
+        setBackDrop(true);
         setItemPerPage(tmpItemPerPage);
         setCurrentPage(0);
         getUserList(tmpItemPerPage, 0);
@@ -50,9 +49,11 @@ const Students = () => {
 
     useEffect(() => {
         if (search) {
+            setBackDrop(true);
             searchUser(search)
         }
         else {
+            setBackDrop(true);
             getUserList(itemPerpage, currentPage)
         }
     }, [search])
@@ -60,12 +61,18 @@ const Students = () => {
     const getUserList = async (limit, page) => {
         const response = await UserService.GetAll(limit, limit * page, search);
         setData(response)
+        setBackDrop(false);
     }
 
     const searchUser = async () => {
 
         const response = await UserService.SearchUser(search);
         setData(response)
+        setBackDrop(false);
+    }
+
+    const deleteUser = async () => {
+        const response = await UserService.DeleteUser(editUserId + 1);
     }
 
     const [openAddUser, setOpenUser] = useState(false)
@@ -76,8 +83,13 @@ const Students = () => {
     }
     return (
         <>
+            <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={backDrop}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
             <AddOrEditUserDialog open={openAddUser || editUserId > 0} editUserId={editUserId} close={() => {
-
                 setOpenUser(false)
                 setEditUserId(0)
             }} />
@@ -162,7 +174,7 @@ const Students = () => {
                                 data?.users?.length > 0 && data.users.map((user, index) => (
 
                                     <TableRow key={index}>
-                                        <TableCell></TableCell>
+                                        <TableCell><Avatar sx={{ width: 34, height: 34 }} alt={user.firstName + " " + user.lastName} src={user.image}></Avatar></TableCell>
 
                                         <CustomTableCell align="right">{`${user.firstName} ${user.lastName}`}</CustomTableCell>
                                         <CustomTableCell align="right">{user.email}</CustomTableCell>
@@ -171,7 +183,7 @@ const Students = () => {
                                         <CustomTableCell align="right">{user.company.name}</CustomTableCell>
                                         <CustomTableCell align="right" sx={{ borderTop: "1px solid rgba(224, 224, 224, 1);" }}>
                                             <Button onClick={e => setEditUserId(user.id)}><img src="/img/pen-1.svg" alt="" /></Button>
-                                            <Button><img src="/img/trash-1.svg" alt="" /></Button>
+                                            <Button onClick={e => deleteUser(user.id)}><img src="/img/trash-1.svg" alt="" /></Button>
                                         </CustomTableCell>
                                     </TableRow>
                                 ))

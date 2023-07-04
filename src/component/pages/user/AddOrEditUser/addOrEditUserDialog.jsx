@@ -25,12 +25,8 @@ const AddOrEditUserDialog = ({ open, close, editUserId }) => {
                     editUserId ? 'Updated User' : 'Add New User'
                 }</DialogTitle>
             <DialogContent>
-                <AddOrEditUser editUserId={editUserId} />
+                <AddOrEditUser open={open} close={close} editUserId={editUserId} />
             </DialogContent>
-            <DialogActions>
-                <Button onClick={handleClose}>Cancel</Button>
-                <Button onClick={handleClose}>Save</Button>
-            </DialogActions>
         </Dialog>
 
     );

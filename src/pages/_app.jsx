@@ -20,6 +20,7 @@ const App = (props) => {
             <Head>
                 <title>{`ŞikayetVar Task`}</title>
                 <meta name='viewport' content='initial-scale=1, width=device-width' />
+                <link rel="icon" type="image/x-ico" href="/img/sikayetVar.ico" />
             </Head>
             <Box>
                 <AuthProvider>

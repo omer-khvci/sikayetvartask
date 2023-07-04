@@ -15,9 +15,7 @@ const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null)
     const login = (data) => {
-        debugger
         const { userName, password } = data
-        //TODO: userName parola kontrolü yap.
 
         localStorage.setItem('userInfo', JSON.stringify(data))
 

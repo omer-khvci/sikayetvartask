@@ -17,6 +17,10 @@ const LogoLine = styled(Box)(({ theme }) => ({
     marginRight: '10px'
 }))
 
+const clickButton = () =>{
+    localStorage.clear();
+}
+
 
 const UserLayout = ({ children }) => {
     const router = useRouter()
@@ -135,7 +139,6 @@ const UserLayout = ({ children }) => {
                                     <img src={`img/${item.icon}`} alt={item.name} />
 
                                 </ListItemIcon>
-                                {/* Yazı Fontu ayarlanacak TODO*/}
                                 <ListItemText primary={item.name} sx={{
                                     color: "#000",
                                     fontSize: "14px",
@@ -157,7 +160,7 @@ const UserLayout = ({ children }) => {
                 marginTop: "70px"
             }}>
                 <List>
-                    <ListItemButton sx={{
+                    <ListItemButton href="/" onClick={clickButton} sx={{
                         textAlign: "center"
                     }}>
 

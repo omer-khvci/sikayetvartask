@@ -16,7 +16,6 @@ class CustomDocument extends Document {
                     href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'
                 />
 
-                <link rel='shortcut icon' href='/images/favicon.png' />
             </Head>
             <body style={{ margin: "0", background: '#FDFDFD' }}>
                 <Main />
