@@ -4,6 +4,8 @@ import { Box, Button, FormControl, InputBase, InputLabel, Link, TextField, alpha
 import { useRouter } from "next/router"
 import Typography from '@mui/material/Typography';
 import { useState } from "react";
+import * as yup from "yup";
+import { toast } from "react-toastify";
 
 const LoginBox = styled(Box)(({ theme }) => ({
     background: `linear-gradient(49deg, #FEAF00 0%, #F8D442 100%);`,
@@ -39,6 +41,17 @@ const HeaderDivider = styled(Box)(({ theme }) => ({
     marginRight: '10px'
 }))
 
+const schema = yup.object().shape({
+    email: yup
+      .string()
+      .email("Geçerli bir e-posta girmelisiniz")
+      .required("Bir e-posta girmelisiniz"),
+    password: yup
+      .string()
+      .required("Lütfen Şifrenizi Giriniz")
+      .min(4, "Şifreniz kısa - lütfen 4  karakterli şifrenizi giriniz."),
+  });
+
 
 
 const Login = () => {
@@ -51,9 +64,11 @@ const Login = () => {
 
         const response = await auth.login({ userName: form.userName, password: form.password });
 
-        if (response === true) {
+        if (response === true && form.userName!= "" && form.password !="") {
             await auth.init();
             router.replace('/')
+        }else{
+            toast.error("Please Enter Your Email And Password")
         }
 
     }
@@ -110,7 +125,11 @@ const Login = () => {
                         fontWeight: '500',
                         lineHeight: 'normal',
                     }}>Email</Typography>
-                    <TextField id="email" placeholder="Enter youe email" type="text" onChange={e => setForm({ ...form, userName: e.target.value })} />
+                    <TextField id="email" placeholder="Enter your email" type="email" required onChange={e => setForm({ ...form, userName: e.target.value })}
+                        inputProps={{
+                            pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$'
+                        }}
+                    />
                 </FormControl>
 
                 <FormControl fullWidth sx={{ mb: 2 }}>
@@ -122,7 +141,7 @@ const Login = () => {
                         fontWeight: '500',
                         lineHeight: 'normal',
                     }}>Password</Typography>
-                    <TextField type="password" id="password" placeholder="Enter your password" onChange={e => setForm({ ...form, password: e.target.value })} />
+                    <TextField type="password" id="password" required placeholder="Enter your password" onChange={e => setForm({ ...form, password: e.target.value })} />
                 </FormControl>
 
                 <Button onClick={login} fullWidth sx={{
