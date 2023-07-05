@@ -34,7 +34,6 @@ const UserService = {
         return await response.json()
     },
     UpdateUser: async (request) => {
-        debugger;
         const url = `${ApiUrl}/users/${request.id}`
         const response = await fetch(url, {
             method: 'PUT',
@@ -45,7 +44,6 @@ const UserService = {
         return await response.json()
     },
     DeleteUser: async (id) => {
-        debugger;
         const url = `${ApiUrl}/users/${id}`
         const response = await fetch(url, {
             method: 'DELETE',
